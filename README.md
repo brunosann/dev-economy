@@ -2,7 +2,7 @@
 
 ### Imagem da Dashboard da primeira versão.
 
-![Preview](https://github.com/brunosann/dev-economy/blob/master/dashboard.png?raw=true)
+![Preview](./dashboard.png?raw=true "Dashboard v0.1")
 
 ### Andamento do Projeto:
 
