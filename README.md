@@ -39,5 +39,4 @@
 
 -   Acesse a url que ira aparecer no seu terminal
 
-<hr/>
- Obs: Enquanto o projeto estiver em **Desenvolvimento** o README será alterado com possíveis novas etapas para rodar o projeto.
+Obs: Enquanto o projeto estiver em **Desenvolvimento** o README será alterado com possíveis novas etapas para rodar o projeto.
