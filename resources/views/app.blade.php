@@ -7,11 +7,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{ env('APP_NAME') }}</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    <script defer src="{{ asset('js/alpine.js') }}"></script>
+    @routes
+    <script defer src="{{ asset('js/app.js') }}"></script>
 </head>
 
 <body>
-    <h1>Hello World</h1>
+    @inertia
 </body>
 
 </html>
