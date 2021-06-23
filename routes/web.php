@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,8 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return 'Welcome';
-});
+Route::inertia('/', 'Home')->name('home');
 
 Route::inertia('/cadastro', 'Register')->name('register');
+Route::post('/cadastro', [AuthController::class, 'register'])->name('register.submit');

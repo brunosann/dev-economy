@@ -1,6 +1,28 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useForm } from "@inertiajs/inertia-react";
+import AuthInput from "../components/AuthInput";
 
 const Register = () => {
+  const { data, setData, post, processing, errors } = useForm({
+    name: "",
+    email: "",
+    password: "",
+    password_confirmation: "",
+  });
+
+  useEffect(() => {
+    return () => {
+      setData({});
+    };
+  }, []);
+
+  const handleChange = ({ target }) => setData(target.id, target.value);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    post(route("register.submit"));
+  };
+
   return (
     <main className="flex items-center min-h-screen p-4 bg-gray-100 lg:justify-center">
       <div className="flex flex-col overflow-hidden bg-white rounded-md shadow-lg max md:flex-row md:flex-1 lg:max-w-screen-md">
@@ -24,46 +46,48 @@ const Register = () => {
           <h3 className="my-4 text-2xl font-semibold text-gray-700 text-center">
             Cadastrar-se
           </h3>
-          <form action="#" className="flex flex-col space-y-5">
-            <div className="flex flex-col space-y-1">
-              <label
-                htmlFor="name"
-                className="text-sm font-semibold text-gray-500"
-              >
-                Nome
-              </label>
-              <input type="text" id="name" autoFocus className="auth-input" />
-            </div>
-            <div className="flex flex-col space-y-1">
-              <label
-                htmlFor="email"
-                className="text-sm font-semibold text-gray-500"
-              >
-                Email
-              </label>
-              <input type="email" id="email" className="auth-input" />
-            </div>
-            <div className="flex flex-col space-y-1">
-              <label
-                htmlFor="password"
-                className="text-sm font-semibold text-gray-500"
-              >
-                Senha
-              </label>
-              <input type="password" id="password" className="auth-input" />
-            </div>
-            <div className="flex flex-col space-y-1">
-              <label
-                htmlFor="co-password"
-                className="text-sm font-semibold text-gray-500"
-              >
-                Confirme a Senha
-              </label>
-              <input type="password" id="co-password" className="auth-input" />
-            </div>
+          <form onSubmit={handleSubmit} className="flex flex-col space-y-5">
+            <AuthInput
+              label="Nome"
+              id="name"
+              type="text"
+              autoFocus
+              error={errors.name}
+              onChange={handleChange}
+              value={data.name}
+            />
+            <AuthInput
+              label="Email"
+              id="email"
+              type="email"
+              error={errors.email}
+              onChange={handleChange}
+              value={data.email}
+            />
+            <AuthInput
+              label="Senha"
+              id="password"
+              type="password"
+              error={errors.password}
+              onChange={handleChange}
+              value={data.password}
+            />
+            <AuthInput
+              label="Confirme a senha"
+              id="password_confirmation"
+              type="password"
+              error={errors.password_confirmation}
+              onChange={handleChange}
+              value={data.password_confirmation}
+            />
+
             <div>
-              <button type="submit" className="auth-btn">
-                Cadastrar
+              <button
+                type="submit"
+                disabled={processing}
+                className={`auth-btn ${processing && "opacity-70"}`}
+              >
+                {processing ? "Cadastrando..." : "Cadastrar"}
               </button>
             </div>
           </form>
