@@ -15,6 +15,7 @@ class AuthController extends Controller
         $userData = $request->only('name', 'email');
         $userData['password'] = Hash::make($request->input('password'));
         User::create($userData);
+        Auth::attempt($request->only('email', 'password'));
         return redirect()->route('home');
     }
 
