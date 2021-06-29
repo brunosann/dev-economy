@@ -22,4 +22,5 @@ Route::post('/login', [AuthController::class, 'login'])->name('login.submit');
 
 Route::middleware('auth')->group(function () {
   Route::inertia('/', 'Home')->name('home');
+  Route::get('/sair', [AuthController::class, 'logout'])->name('logout');
 });

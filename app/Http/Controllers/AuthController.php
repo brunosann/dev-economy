@@ -25,4 +25,12 @@ class AuthController extends Controller
         if (!$verifCredentials) return back()->withErrors(['message' => 'Email e/ou senha incorretos!']);
         return redirect()->route('home');
     }
+
+    public function logout()
+    {
+        Auth::logout();
+        session()->invalidate();
+        session()->regenerateToken();
+        return redirect()->route('login');
+    }
 }
