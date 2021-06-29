@@ -2,12 +2,10 @@ import React, { useEffect } from "react";
 import { useForm, InertiaLink } from "@inertiajs/inertia-react";
 import AuthInput from "../components/AuthInput";
 
-const Register = () => {
+const Login = () => {
   const { data, setData, post, processing, errors } = useForm({
-    name: "",
     email: "",
     password: "",
-    password_confirmation: "",
   });
 
   useEffect(() => {
@@ -20,7 +18,7 @@ const Register = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    post(route("register.submit"));
+    post(route("login.submit"));
   };
 
   return (
@@ -36,26 +34,17 @@ const Register = () => {
             Tome o controle de seus gastos
           </p>
           <p className="flex flex-col items-center justify-center text-center">
-            <span>Ja tem uma conta?</span>
-            <InertiaLink className="underline" href={route("login")}>
-              Entrar!
+            <span>Não tem uma conta?</span>
+            <InertiaLink className="underline" href={route("register")}>
+              Cadastra-se!
             </InertiaLink>
           </p>
         </div>
         <div className="p-5 bg-white md:flex-1">
           <h3 className="my-4 text-2xl font-semibold text-gray-700 text-center">
-            Cadastrar-se
+            Login
           </h3>
           <form onSubmit={handleSubmit} className="flex flex-col space-y-5">
-            <AuthInput
-              label="Nome"
-              id="name"
-              type="text"
-              autoFocus
-              error={errors.name}
-              onChange={handleChange}
-              value={data.name}
-            />
             <AuthInput
               label="Email"
               id="email"
@@ -73,23 +62,16 @@ const Register = () => {
               onChange={handleChange}
               value={data.password}
             />
-            <AuthInput
-              autoComplete="off"
-              label="Confirme a senha"
-              id="password_confirmation"
-              type="password"
-              error={errors.password_confirmation}
-              onChange={handleChange}
-              value={data.password_confirmation}
-            />
-
+            {errors.message && (
+              <span className="text-sm text-red-400">{errors.message}</span>
+            )}
             <div>
               <button
                 type="submit"
                 disabled={processing}
                 className={`auth-btn ${processing && "opacity-70"}`}
               >
-                {processing ? "Cadastrando..." : "Cadastrar"}
+                {processing ? "Verificando..." : "Entrar"}
               </button>
             </div>
           </form>
@@ -99,4 +81,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default Login;

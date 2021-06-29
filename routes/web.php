@@ -14,7 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::inertia('/', 'Home')->name('home');
-
 Route::inertia('/cadastro', 'Register')->name('register');
 Route::post('/cadastro', [AuthController::class, 'register'])->name('register.submit');
+
+Route::inertia('/login', 'Login')->name('login');
+Route::post('/login', [AuthController::class, 'login'])->name('login.submit');
+
+Route::middleware('auth')->group(function () {
+  Route::inertia('/', 'Home')->name('home');
+});
