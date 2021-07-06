@@ -7,7 +7,7 @@ const Header = () => {
   const { user } = usePage().props;
 
   return (
-    <header className="bg-white">
+    <header className="bg-white shadow-lg absolute w-full sm:px-4 lg:px-0">
       <nav className="h-20 container mx-auto flex items-center justify-between px-4 sm:px-0">
         <FaBars className="text-3xl text-blue-600 cursor-pointer" />
         <div className="flex items-center gap-3 relative">
@@ -22,7 +22,7 @@ const Header = () => {
             <div
               className={`${
                 dropDown && "animate-dropDown"
-              } absolute top-11 right-0 w-44 bg-gray-200 rounded text-gray-500 p-2`}
+              } absolute top-11 right-0 w-44 z-10 bg-gray-200 rounded text-gray-500 p-2`}
             >
               <p className="flex items-center justify-end gap-2 pr-1 rounded cursor-pointer transition-all hover:bg-blue-500 hover:text-white">
                 <span className="text-lg">Configurações</span>{" "}
