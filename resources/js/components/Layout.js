@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import Header from "./Header";
 import Sidebar from "./Sidebar";
 
 const Layout = ({ children }) => {
+  const [sidebar, setSidebar] = useState(false);
+
   return (
     <>
-      <Header />
+      <Header handleSidebar={setSidebar} />
       <main className="flex h-screen pt-20">
-        <Sidebar />
+        <Sidebar showSidebar={sidebar} />
         <section className="bg-gray-200 flex-1">{children}</section>
       </main>
     </>
