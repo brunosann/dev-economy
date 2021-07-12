@@ -6,14 +6,17 @@ import {
   FaPiggyBank,
   FaDonate,
 } from "react-icons/fa";
+import { GlobalContext } from "../contexts/GlobalStorage";
 
-const Sidebar = ({ showSidebar }) => {
+const Sidebar = () => {
+  const { sidebar } = React.useContext(GlobalContext);
+
   return (
     <>
-      {showSidebar && (
+      {sidebar && (
         <aside
           className={`${
-            showSidebar && "animate-sidebar"
+            sidebar && "animate-sidebar"
           } bg-white absolute w-full rato sm:static sm:w-auto sm:h-auto`}
         >
           <nav>

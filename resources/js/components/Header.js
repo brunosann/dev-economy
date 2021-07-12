@@ -1,17 +1,19 @@
 import React, { useState } from "react";
-import { InertiaLink, usePage } from "@inertiajs/inertia-react";
+import { usePage } from "@inertiajs/inertia-react";
 import { FaUser, FaSignOutAlt, FaUserCog, FaBars } from "react-icons/fa";
+import { GlobalContext } from "../contexts/GlobalStorage";
 
-const Header = ({ handleSidebar }) => {
+const Header = () => {
   const [dropDown, setDropDown] = useState(false);
   const { user } = usePage().props;
+  const { setSidebar } = React.useContext(GlobalContext);
 
   return (
     <header className="bg-white shadow-lg absolute w-full sm:px-4 lg:px-0">
       <nav className="h-20 container mx-auto flex items-center justify-between px-4 sm:px-0">
         <a href="#">
           <FaBars
-            onClick={() => handleSidebar((old) => !old)}
+            onClick={() => setSidebar((old) => !old)}
             className="text-3xl text-blue-600 cursor-pointer"
           />
         </a>

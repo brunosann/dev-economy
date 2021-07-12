@@ -1,18 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
 import Header from "./Header";
 import Sidebar from "./Sidebar";
+import { GlobalStorage } from "../contexts/GlobalStorage";
 
 const Layout = ({ children }) => {
-  const [sidebar, setSidebar] = useState(false);
-
   return (
-    <>
-      <Header handleSidebar={setSidebar} />
-      <main className="flex h-screen pt-20">
-        <Sidebar showSidebar={sidebar} />
-        <section className="bg-gray-200 flex-1">{children}</section>
-      </main>
-    </>
+    <GlobalStorage>
+      <Header />
+      <div className="flex h-screen pt-20">
+        <Sidebar />
+        <main className="bg-gray-200 flex-1">{children}</main>
+      </div>
+    </GlobalStorage>
   );
 };
 
