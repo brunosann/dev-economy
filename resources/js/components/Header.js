@@ -9,8 +9,8 @@ const Header = () => {
   const { setSidebar } = React.useContext(GlobalContext);
 
   return (
-    <header className="bg-white shadow-lg absolute w-full sm:px-4 lg:px-0">
-      <nav className="h-20 container mx-auto flex items-center justify-between px-4 sm:px-0">
+    <header className="bg-white shadow-lg absolute w-full">
+      <nav className="h-20 max-w-5xl mx-auto px-2 sm:px-4 md:px-8 xl:px-0 flex items-center justify-between">
         <a href="#">
           <FaBars
             onClick={() => setSidebar((old) => !old)}
