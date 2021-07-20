@@ -21,7 +21,7 @@ const CardMoney = ({ title, value, type }) => {
   };
 
   return (
-    <article className="flex items-center justify-between py-7 px-5 bg-white shadow-md rounded-md">
+    <article className="flex items-center justify-between py-4 sm:py-7 px-5 bg-white shadow-md rounded-md">
       <div
         className={`flex items-center justify-center w-14 h-12 rounded ${typesCards[type].bgColor}`}
       >

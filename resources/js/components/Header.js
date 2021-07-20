@@ -18,7 +18,7 @@ const Header = () => {
           />
         </a>
         <div className="flex items-center gap-3 relative">
-          <p>Olá, {user.name}</p>
+          <p className="font-semibold text-gray-700">Olá, {user.name}</p>
           <div
             onClick={() => setDropDown(!dropDown)}
             className="flex items-center justify-center h-10 w-10 line bg-gray-200 rounded-full cursor-pointer"

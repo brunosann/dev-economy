@@ -22,8 +22,6 @@ aside {
 
 .scrollbar {
     height: 500px;
-    max-width: 420px;
-    width: 100%;
 }
 
 #style-7::-webkit-scrollbar-track {
