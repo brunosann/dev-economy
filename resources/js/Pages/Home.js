@@ -2,6 +2,7 @@ import React from "react";
 import Layout from "../components/Layout";
 import CardMoney from "../components/CardMoney";
 import { Doughnut } from "react-chartjs-2";
+import AddExpense from "../components/AddExpense";
 
 const Home = (props) => {
   const dataChart = {
@@ -50,9 +51,7 @@ const Home = (props) => {
     <Layout>
       <div className="max-w-5xl mx-auto px-2 sm:px-4 md:px-8 xl:px-0">
         <article className="flex gap-4 sm:gap-8 my-4 sm:my-8 justify-center sm:justify-start">
-          <button className="bg-blue-600 px-4 py-2 text-white rounded-md shadow-lg focus:outline-none transition-all hover:bg-blue-800">
-            Nova Receita
-          </button>
+          <AddExpense />
           <button className="bg-blue-600 px-4 py-2 text-white rounded-md shadow-lg focus:outline-none transition-all hover:bg-blue-800">
             Nova Despesa
           </button>
