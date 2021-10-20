@@ -1,30 +1,60 @@
 import React, { useState } from "react";
+import { usePage, useForm } from "@inertiajs/inertia-react";
+import CurrencyInput from "react-currency-masked-input";
 import Modal from "./Modal";
 import Button from "./Button";
+import toast from "react-hot-toast";
 
 const AddExpense = () => {
   const [modal, setModal] = useState(false);
   const openModal = () => setModal(true);
   const closeModal = () => setModal(false);
+  const { expenseCategories: categories } = usePage().props;
+
+  const { data, setData, post, processing, errors } = useForm({
+    value: "",
+    category: "",
+    description: "",
+  });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    post(route("despesas.store"), {
+      onSuccess: () => {
+        setData({ value: "", category: "", description: "" });
+        closeModal();
+        toast.success("Despesa adicionada");
+      },
+    });
+  };
 
   return (
     <>
-      <Button handleClick={openModal} title="Nova Receita" />
+      <Button handleClick={openModal} title="Nova Despesa" />
       <Modal show={modal} closeModal={closeModal}>
         <h2 className="text-3xl text-white text-center font-semibold mb-4">
           Adicione sua Despesa
         </h2>
-        <form className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <form
+          onSubmit={handleSubmit}
+          className="grid grid-cols-1 sm:grid-cols-2 gap-4"
+        >
           <div>
             <label htmlFor="value" className="block text-white">
               Valor:
             </label>
-            <input
-              type="text"
+            <CurrencyInput
+              autoComplete="off"
               id="value"
-              placeholder="R$ 59,93"
+              value={data.value}
+              placeholder="59,93"
+              required
+              onChange={(event, value) => setData("value", value)}
               className="w-full rounded focus:outline-none py-2 px-4"
             />
+            {errors.value && (
+              <p className="text-sm text-red-700 mt-1">{errors.value}</p>
+            )}
           </div>
           <div>
             <label htmlFor="category" className="block text-white">
@@ -35,12 +65,19 @@ const AddExpense = () => {
               id="category"
               className="w-full rounded focus:outline-none h-10 px-4"
               placeholder="teste"
+              value={data.category}
+              onChange={({ target }) => setData("category", target.value)}
             >
-              <option selected>Selecione a categoria &hellip;</option>
-              <option value="">category 1</option>
-              <option value="">category 2</option>
-              <option value="">category 3</option>
+              <option defaultValue="">Selecione a categoria &hellip;</option>
+              {categories.map(({ category, id }) => (
+                <option key={id} value={id}>
+                  {category}
+                </option>
+              ))}
             </select>
+            {errors.category && (
+              <p className="text-sm text-red-700 mt-1">{errors.category}</p>
+            )}
           </div>
           <div className="sm:col-span-2">
             <label htmlFor="description" className="block text-white">
@@ -49,6 +86,8 @@ const AddExpense = () => {
             <input
               type="text"
               id="description"
+              value={data.description}
+              onChange={({ target }) => setData("description", target.value)}
               placeholder="pastel da feira..."
               className="w-full rounded focus:outline-none py-2 px-4"
             />
@@ -62,10 +101,11 @@ const AddExpense = () => {
               Cancelar
             </button>
             <button
-              type="button"
+              type="submit"
               className="w-full py-2 px-4 font-semibold rounded bg-white text-blue-500 focus:outline-none transition-all hover:bg-blue-100 hover:shadow-md"
+              disabled={processing}
             >
-              Adicionar
+              {processing ? "Salvando..." : "Adicionar"}
             </button>
           </div>
         </form>

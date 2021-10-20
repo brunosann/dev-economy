@@ -53,7 +53,7 @@ const Home = (props) => {
         <article className="flex gap-4 sm:gap-8 my-4 sm:my-8 justify-center sm:justify-start">
           <AddExpense />
           <button className="bg-blue-600 px-4 py-2 text-white rounded-md shadow-lg focus:outline-none transition-all hover:bg-blue-800">
-            Nova Despesa
+            Nova Receita
           </button>
         </article>
         <section className="grid sm:grid-cols-3 gap-4 sm:gap-8">

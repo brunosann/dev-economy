@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ExpenseController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,6 +23,7 @@ Route::inertia('/login', 'Login')->name('login');
 Route::post('/login', [AuthController::class, 'login'])->name('login.submit');
 
 Route::middleware('auth')->group(function () {
-  Route::inertia('/', 'Home')->name('home');
-  Route::get('/sair', [AuthController::class, 'logout'])->name('logout');
+    Route::get('/', HomeController::class)->name('home');
+    Route::resource('despesas', ExpenseController::class)->only(['store']);
+    Route::get('/sair', [AuthController::class, 'logout'])->name('logout');
 });

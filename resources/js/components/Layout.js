@@ -1,4 +1,5 @@
 import React from "react";
+import { Toaster } from "react-hot-toast";
 import Header from "./Header";
 import Sidebar from "./Sidebar";
 import { GlobalStorage } from "../contexts/GlobalStorage";
@@ -6,6 +7,18 @@ import { GlobalStorage } from "../contexts/GlobalStorage";
 const Layout = ({ children }) => {
   return (
     <GlobalStorage>
+      <Toaster
+        containerStyle={{ marginTop: "75px" }}
+        toastOptions={{
+          className: "mx-auto sm:mx-0",
+          style: {
+            background: "#363636",
+            color: "#fff",
+          },
+        }}
+        position="top-right"
+        reverseOrder={false}
+      />
       <Header />
       <div className="flex h-screen pt-20">
         <Sidebar />

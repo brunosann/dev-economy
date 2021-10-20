@@ -13,7 +13,7 @@ class CreateExpensesCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('expenses_categories', function (Blueprint $table) {
+        Schema::create('expense_categories', function (Blueprint $table) {
             $table->id();
             $table->string('category');
             $table->timestamps();
