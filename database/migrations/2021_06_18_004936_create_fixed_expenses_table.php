@@ -18,7 +18,7 @@ class CreateFixedExpensesTable extends Migration
             $table->decimal('value', 12, 2);
             $table->string('expense');
             $table->foreignId('user_id')->constrained();
-            $table->foreignId('expenses_categories_id')->constrained();
+            $table->foreignId('expenses_categories_id')->constrained('expense_categories');
             $table->timestamps();
             $table->softDeletes();
         });
