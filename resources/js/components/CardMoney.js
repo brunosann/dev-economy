@@ -1,5 +1,6 @@
 import React from "react";
 import { FaWallet, FaCommentsDollar, FaCommentDollar } from "react-icons/fa";
+import formatCurrency from "../utils/formatCurrency";
 
 const CardMoney = ({ title, value, type }) => {
   const typesCards = {
@@ -32,7 +33,7 @@ const CardMoney = ({ title, value, type }) => {
         <p
           className={`font-semibold tracking-wider ${typesCards[type].textColor}`}
         >
-          R$ {value}
+          {formatCurrency(value)}
         </p>
       </div>
     </article>
